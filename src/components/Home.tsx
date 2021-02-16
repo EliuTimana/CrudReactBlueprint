@@ -3,7 +3,7 @@ import { Post } from '../models';
 import { PostsService } from '../services/PostsService';
 import { UsersService } from '../services/UsersService';
 import { Cell, Column, RenderMode, SelectionModes, Table, TableLoadingOption } from '@blueprintjs/table';
-import { Alert, Button, Intent } from '@blueprintjs/core';
+import { Alert, Button, Intent, Text } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
 import { ShowPostDialog } from './posts/ShowPostDialog';
 import { AppToaster } from '../App';
@@ -68,7 +68,7 @@ export const Home = () => {
       <Table numRows={posts ? posts.length : 100} enableRowResizing={false} defaultRowHeight={30}
              renderMode={RenderMode.BATCH}
              selectionModes={SelectionModes.NONE} loadingOptions={[TableLoadingOption.CELLS]}
-             columnWidths={[250, 200, 150, 240]}>
+             columnWidths={[250, 200, 350, 240]}>
         <Column name="Title"
                 cellRenderer={(rowIndex) => <Cell loading={!posts} tooltip={posts && posts[rowIndex].title}
                                                   wrapText={false}>{posts && posts[rowIndex].title}</Cell>}/>
@@ -76,8 +76,19 @@ export const Home = () => {
                 cellRenderer={(rowIndex) => <Cell loading={!posts} tooltip={posts && posts[rowIndex].body}
                                                   truncated={true}>{posts && posts[rowIndex].body}</Cell>}/>
         <Column name="User"
-                cellRenderer={(rowIndex) => <Cell loading={!posts} tooltip={posts && posts[rowIndex].user?.username}
-                                                  truncated={true}>{posts && posts[rowIndex].user?.username}</Cell>}/>
+                cellRenderer={
+                  (rowIndex) => {
+                    const value = posts && posts[rowIndex].user?.name;
+                    const email = posts && posts[rowIndex].user?.email;
+
+                    return <Cell loading={!posts}
+                                 tooltip={value}
+                                 truncated={true}>
+                      <Text tagName="span">{value}</Text> <Text tagName="small" className="bp3-text-muted">({email})</Text>
+                    </Cell>
+                  }
+                }
+        />
         <Column name="Actions"
                 cellRenderer={(rowIndex) => <Cell loading={!posts}
                                                   className="d-flex align-items-center justify-content-between">

@@ -1,5 +1,5 @@
-import { axiosApi } from '../ApiConfig';
-import { Post, User } from '../models';
+import { axiosApi, toPromise } from '../ApiConfig';
+import { Post, User, Comment } from '../models';
 
 export class PostsService {
 
@@ -30,5 +30,9 @@ export class PostsService {
         }
       }).catch(e => reject(e));
     })
+  }
+
+  public static getComments(id: number) {
+    return toPromise<Comment[]>(axiosApi.get(`${this.API}/${id}/comments`))
   }
 }
