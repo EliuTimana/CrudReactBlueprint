@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Login } from './components/auth/Login';
+import { Position, Toaster } from '@blueprintjs/core';
+import { SecurityService } from './services/SecurityService';
+import { Home } from './components/Home';
+
+export const AppToaster = Toaster.create({
+  position: Position.TOP,
+  autoFocus: true
+});
 
 function App() {
+  const isLoggedIn = SecurityService.loggedIn();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        {!isLoggedIn && <Redirect to="/login"/>}
+        <Switch>
+          <Route exact path="/">
+            <Home/>
+          </Route>
+          <Route exact path="/login">
+            <Login/>
+          </Route>
+        </Switch>
+      </BrowserRouter>
   );
 }
 
