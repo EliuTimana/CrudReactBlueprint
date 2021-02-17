@@ -1,10 +1,12 @@
 import { Post, User } from '../../models';
-import { Button, Classes, Dialog, FormGroup, InputGroup, MenuItem, TextArea } from '@blueprintjs/core';
+import { Button, Classes, Dialog, FormGroup, InputGroup, Intent, MenuItem, TextArea } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup'
 import React, { useState } from 'react';
 import { Select } from '@blueprintjs/select';
+import { PostsService } from '../../services/PostsService';
+import { AppToaster } from '../../App';
 
 interface Props {
   post: Post;
@@ -22,23 +24,33 @@ export const EditPostDialog = ({post, users, onClose}: Props) => {
 
   const UsersSelect = Select.ofType<User>();
   const [selected, setSelected] = useState<User>(users[0])
+
   return <Dialog icon={IconNames.EDIT} title="Edit post" onClose={() => onClose()} isOpen={!!post}>
-    <div className={Classes.DIALOG_BODY}>
-      <Formik
-          initialValues={{
-            title: post.title,
-            body: post.body,
-            userId: post.userId
-          }}
-          validationSchema={schema}
-          onSubmit={
-            (values) => {
-              console.log(values)
+    <Formik
+        initialValues={{
+          title: post.title,
+          body: post.body,
+          userId: post.userId
+        }}
+        validationSchema={schema}
+        onSubmit={
+          async (values, {setSubmitting}) => {
+            try {
+              await PostsService.update({...values, id: post.id});
+
+              AppToaster.show({message: 'Post successfully updated', intent: Intent.SUCCESS});
+              setSubmitting(false)
+              onClose()
+            } catch (e) {
+              setSubmitting(false)
+              console.error(e)
             }
-          }>
-        {
-          ({isSubmitting, touched, errors, values, setFieldValue}) => (
-              <Form>
+          }
+        }>
+      {
+        ({isSubmitting, touched, errors, values, setFieldValue}) => (
+            <Form>
+              <div className={Classes.DIALOG_BODY}>
                 <FormGroup labelFor="title" label="Title" helperText={touched.title && errors.title}>
                   <Field id="title" name="title" as={InputGroup}/>
                 </FormGroup>
@@ -59,11 +71,15 @@ export const EditPostDialog = ({post, users, onClose}: Props) => {
                 <FormGroup labelFor="body" label="Body" helperText={touched.body && errors.body}>
                   <Field id="body" name="body" fill={true} growVertically={true} as={TextArea}/>
                 </FormGroup>
-                <Button type="submit">Save changes</Button>
-              </Form>
-          )
-        }
-      </Formik>
-    </div>
+              </div>
+              <div className={Classes.DIALOG_FOOTER}>
+                <div className={Classes.DIALOG_FOOTER_ACTIONS}>
+                  <Button loading={isSubmitting} type="submit" intent={Intent.PRIMARY}>Save changes</Button>
+                </div>
+              </div>
+            </Form>
+        )
+      }
+    </Formik>
   </Dialog>
 }

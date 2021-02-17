@@ -35,4 +35,14 @@ export class PostsService {
   public static getComments(id: number) {
     return toPromise<Comment[]>(axiosApi.get(`${this.API}/${id}/comments`))
   }
+
+  public static update(post:Post){
+    return new Promise<void>((resolve, reject) => {
+      axiosApi.patch(`${this.API}/${post.id}`,post).then(r => {
+        if (r.status === 200) {
+          resolve();
+        }
+      }).catch(e => reject(e));
+    })
+  }
 }
