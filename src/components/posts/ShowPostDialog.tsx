@@ -48,7 +48,7 @@ export const ShowPostDialog = ({post, onClose}: Props) => {
     </>;
   }
 
-  return <Dialog icon={IconNames.EYE_ON} title={post.title} isOpen={!!post} onClose={() => onClose()}>
+  return <Dialog canOutsideClickClose={false} icon={IconNames.EYE_ON} title={post.title} isOpen={!!post} onClose={() => onClose()}>
     <div className={Classes.DIALOG_BODY}>
       <Tabs id="tabs" defaultSelectedTabId="post">
         <Tab id="post" title="Post" panel={<PostPanel post={post}/>}/>

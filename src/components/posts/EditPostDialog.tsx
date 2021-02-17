@@ -25,7 +25,7 @@ export const EditPostDialog = ({post, users, onClose}: Props) => {
   const UsersSelect = Select.ofType<User>();
   const [selected, setSelected] = useState<User>(users[0])
 
-  return <Dialog icon={IconNames.EDIT} title="Edit post" onClose={() => onClose()} isOpen={!!post}>
+  return <Dialog canOutsideClickClose={false} icon={IconNames.EDIT} title="Edit post" onClose={() => onClose()} isOpen={!!post}>
     <Formik
         initialValues={{
           title: post.title,
