@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/CrudReactBlueprint/static/css/main.e6c738a1.chunk.css",
+    "main.js": "/CrudReactBlueprint/static/js/main.793de8a0.chunk.js",
+    "main.js.map": "/CrudReactBlueprint/static/js/main.793de8a0.chunk.js.map",
+    "runtime-main.js": "/CrudReactBlueprint/static/js/runtime-main.cd4e5daf.js",
+    "runtime-main.js.map": "/CrudReactBlueprint/static/js/runtime-main.cd4e5daf.js.map",
+    "static/css/2.1e86a026.chunk.css": "/CrudReactBlueprint/static/css/2.1e86a026.chunk.css",
+    "static/js/2.5010b958.chunk.js": "/CrudReactBlueprint/static/js/2.5010b958.chunk.js",
+    "static/js/2.5010b958.chunk.js.map": "/CrudReactBlueprint/static/js/2.5010b958.chunk.js.map",
+    "static/js/3.02659447.chunk.js": "/CrudReactBlueprint/static/js/3.02659447.chunk.js",
+    "static/js/3.02659447.chunk.js.map": "/CrudReactBlueprint/static/js/3.02659447.chunk.js.map",
+    "index.html": "/CrudReactBlueprint/index.html",
+    "static/css/2.1e86a026.chunk.css.map": "/CrudReactBlueprint/static/css/2.1e86a026.chunk.css.map",
+    "static/css/main.e6c738a1.chunk.css.map": "/CrudReactBlueprint/static/css/main.e6c738a1.chunk.css.map",
+    "static/js/2.5010b958.chunk.js.LICENSE.txt": "/CrudReactBlueprint/static/js/2.5010b958.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/CrudReactBlueprint/static/media/icons-20.cde033c5.eot"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cd4e5daf.js",
+    "static/css/2.1e86a026.chunk.css",
+    "static/js/2.5010b958.chunk.js",
+    "static/css/main.e6c738a1.chunk.css",
+    "static/js/main.793de8a0.chunk.js"
+  ]
+}
