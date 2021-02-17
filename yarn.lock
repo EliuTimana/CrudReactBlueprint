@@ -1154,6 +1154,15 @@
     classnames "^2.2"
     tslib "~1.13.0"
 
+"@blueprintjs/select@^3.15.4":
+  version "3.15.4"
+  resolved "https://registry.yarnpkg.com/@blueprintjs/select/-/select-3.15.4.tgz#bca5042e1b66ed89da5bc89693ddc1942b22dc25"
+  integrity sha512-TsDDn5Pp39Bazv1Spu8evALKpBjQ5j+5SOlCBuXokMWcFI99RekG5jI9fYQKsOlyvXGWxazMG/vsIuIf5tXKoA==
+  dependencies:
+    "@blueprintjs/core" "^3.38.2"
+    classnames "^2.2"
+    tslib "~1.13.0"
+
 "@blueprintjs/table@^3.8.22":
   version "3.8.22"
   resolved "https://registry.yarnpkg.com/@blueprintjs/table/-/table-3.8.22.tgz#7cf1307596b3ce5b80dfb41b81b37ef482d39fa5"
